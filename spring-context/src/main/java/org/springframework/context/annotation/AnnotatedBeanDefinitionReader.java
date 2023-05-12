@@ -84,6 +84,7 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
+		// this.conditionEvaluator干了啥？doRegisterBean中判断是否应该跳过
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
@@ -289,6 +290,9 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Get the Environment from the given registry if possible, otherwise return a new
 	 * StandardEnvironment.
+	 * 加载系统的环境变量，系统属性（System.getEnv(),System.getProperties()）
+	 * EnvironmentCapable给ApplicationContext提供一个整体的运行环境。那EnvironmentCapable应该是ApplicationContext的一个父类，确实是这样的，
+	 * 'public interface ApplicationContext extends EnvironmentCapable'在最顶层的ApplicationContext中继承的
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");

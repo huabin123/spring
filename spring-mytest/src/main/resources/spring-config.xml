@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
 	<!-- 配置一个bean -->
-	<bean id="testBean" class="BeanTest.TestBean">
+	<bean id="testBean" class="com.my.TestBean">
 		<!--给构造函数传递参数，没有的话则调用默认构造方法  -->
 <!--		<constructor-arg value="15"/>-->
 	</bean>

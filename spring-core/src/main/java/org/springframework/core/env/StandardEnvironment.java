@@ -51,7 +51,7 @@ package org.springframework.core.env;
  * @see SystemEnvironmentPropertySource
  * @see org.springframework.web.context.support.StandardServletEnvironment
  */
-public class StandardEnvironment extends AbstractEnvironment {
+public class StandardEnvironment extends AbstractEnvironment {  // 跳进来直接到了这里，寻找无参构造，没有的话就往父类找
 
 	/** System environment property source name: {@value}. */
 	public static final String SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME = "systemEnvironment";

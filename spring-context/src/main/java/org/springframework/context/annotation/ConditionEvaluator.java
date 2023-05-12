@@ -151,7 +151,7 @@ class ConditionEvaluator {
 			this.beanFactory = deduceBeanFactory(registry);
 			this.environment = (environment != null ? environment : deduceEnvironment(registry));
 			this.resourceLoader = (resourceLoader != null ? resourceLoader : deduceResourceLoader(registry));
-			this.classLoader = deduceClassLoader(resourceLoader, this.beanFactory);
+			this.classLoader = deduceClassLoader(resourceLoader, this.beanFactory);  // 最终调用的是Thread.currentThread().getContextClassLoader()，当前线程的类加载器
 		}
 
 		@Nullable

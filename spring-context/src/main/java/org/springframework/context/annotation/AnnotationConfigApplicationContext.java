@@ -61,9 +61,15 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	/**
 	 * Create a new AnnotationConfigApplicationContext that needs to be populated
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
+	 * ApplicationContext的四大体系继承：
+	 * 1、GenericApplicationContext（更加抽象、完成BeanFactory创建）、
+	 * 2、BeanDefinitionRegistry(注册Bean)、
+	 * 3、EnvironmentCapable(运行时环境)、
+	 * 4、ResourceLoader（资源加载器）
 	 */
 	public AnnotationConfigApplicationContext() {
-		this.reader = new AnnotatedBeanDefinitionReader(this);
+		// 在GenericApplicationContext中,阅读器，把bean信息从ApplicationContext的配置类中读取出来生成BeanDefinition给BeanFactory注册
+		this.reader = new AnnotatedBeanDefinitionReader(this);  // 这里传的this，this是BeanDefinitionRegistry的一个子类
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 

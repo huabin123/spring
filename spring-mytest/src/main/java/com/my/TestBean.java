@@ -1,10 +1,13 @@
-package BeanTest;
+package com.my;
+
+import org.springframework.stereotype.Service;
 
 /**
  * @Author huabin
  * @DateTime 2023-03-05 18:04
  * @Desc
  */
+@Service
 public class TestBean {
 
 	public String name = "Hello World123";

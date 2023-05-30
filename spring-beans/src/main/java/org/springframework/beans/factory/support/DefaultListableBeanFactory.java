@@ -205,6 +205,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	/**
 	 * Specify an id for serialization purposes, allowing this BeanFactory to be
 	 * deserialized from this id back into the BeanFactory object, if needed.
+	 * 指定一个用于序列化的id，如果需要，允许将这个BeanFactory从这个id反序列化回BeanFactory对象
 	 */
 	public void setSerializationId(@Nullable String serializationId) {
 		if (serializationId != null) {
@@ -904,6 +905,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
+			// abstract classes don't need to have @Component(cannot be instantiated).
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
@@ -926,6 +928,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 				else {
 					getBean(beanName);
+					/*
+					问题：实例化之后还需要修改Bean该怎么做？
+					方法1、BeanPostProcessor.postProcessAfterInitialization
+					方法2、见下方SmartInitializingSingleton
+					 */
 				}
 			}
 		}

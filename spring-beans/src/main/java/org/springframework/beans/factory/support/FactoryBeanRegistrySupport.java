@@ -81,7 +81,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	 */
 	@Nullable
 	protected Object getCachedObjectForFactoryBean(String beanName) {
-		return this.factoryBeanObjectCache.get(beanName);
+		return this.factoryBeanObjectCache.get(beanName);  // factoryBeanObjectCache是用来辅助三级缓存的缓存
 	}
 
 	/**

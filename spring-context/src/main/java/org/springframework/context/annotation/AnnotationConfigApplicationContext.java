@@ -88,6 +88,13 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * from the given component classes and automatically refreshing the context.
 	 * @param componentClasses one or more component classes &mdash; for example,
 	 * {@link Configuration @Configuration} classes
+	 *
+	 * this里进行了两个对象的创建，
+	 * 1、reader创建、包含了环境创建（systemProperties和envProperties环境初始化），进行了一些Spring内部的Bean的读取和注册
+	 *    （为beanFactory设置了专门处理@Order，@Priority，@Lazy的processor，添加有关@Configuration @Autowired
+	 *    @Resource 检测一下JPA如果有的话也会添加，Listener和ListenerFactory）
+	 * 2、scanner主要是为我们一个String BasePackage这样的构造提供的
+	 * 3、register,专门处理@ComponentScan类
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 		this();

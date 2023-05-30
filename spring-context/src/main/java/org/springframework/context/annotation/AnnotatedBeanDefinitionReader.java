@@ -86,6 +86,7 @@ public class AnnotatedBeanDefinitionReader {
 		this.registry = registry;
 		// this.conditionEvaluator干了啥？doRegisterBean中判断是否应该跳过
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		// 注册一些Spring内部的bean
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
@@ -257,7 +258,7 @@ public class AnnotatedBeanDefinitionReader {
 		}
 
 		abd.setInstanceSupplier(supplier);
-		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
+		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);  // 这里将获得一些bean的默认信息
 		abd.setScope(scopeMetadata.getScopeName());
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 

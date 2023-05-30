@@ -79,6 +79,7 @@ class ConditionEvaluator {
 	 */
 	public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable ConfigurationPhase phase) {
 		if (metadata == null || !metadata.isAnnotated(Conditional.class.getName())) {
+			// 问题：为什么使用Conditional就需要跳过？如果一个类标注了Conditional，那就表示这个类是一个有条件Bean注册
 			return false;
 		}
 
